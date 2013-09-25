@@ -27,6 +27,12 @@ if node['mxhero']['database']
 	include_recipe "mxhero::mysql"
 end
 	
+directory "/opt/mxhero-installer" do
+	owner "root"
+	group "root"
+	mode 00755
+	action :create
+end
 
 ark	"mxhero" do
 	path "/opt/mxhero-installer"
