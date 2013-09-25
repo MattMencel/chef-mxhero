@@ -9,5 +9,6 @@ version          '0.1.7'
 supports 		'centos', '>= 6.3'
 
 depends			'ark'
-depends			'mysql'
 depends			'database'
+depends			'mysql'
+depends			'rbenv'
