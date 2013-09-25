@@ -17,7 +17,7 @@ user "mxhero" do
 	action :create
 	comment "mxHero User"
 	gid "mxhero"
-	home "/home/mxhero"
+	home "/opt/mxhero"
 	shell "/bin/bash"
 	supports :manage_home => true 
 end
