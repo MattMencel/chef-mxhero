@@ -1,3 +1,6 @@
+default['mysql']['tunable']['event_scheduler']  = "ON"
+
+default['mxhero']['install_dir'] = "/opt/mxhero-installer/mxhero-#{node['mxhero']['version']}"
 default['mxhero']['url'] = "http://www.mxhero.com/Download/Software/Installer/Community/mxHero-Community-#{node['mxhero']['version']}.RELEASE.tar.gz"
 default['mxhero']['version'] = '2.2.0'
 

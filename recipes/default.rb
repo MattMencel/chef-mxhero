@@ -9,6 +9,13 @@
 
 # Create mxHero user and group
 
+# Require Ruby
+include_recipe "rbenv::default"
+include_recipe "rbenv::ruby_build"
+rbenv_ruby "2.0.0-p247" do
+  global true
+end
+
 group "mxhero" do
 	action :create
 end
@@ -34,7 +41,7 @@ directory "/opt/mxhero-installer" do
 	action :create
 end
 
-ark	"mxhero" do
+ark	node['mxhero']['install_dir'] do
 	path "/opt/mxhero-installer"
 	url node['mxhero']['url']
 	action :put
