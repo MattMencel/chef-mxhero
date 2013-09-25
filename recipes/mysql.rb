@@ -1,4 +1,5 @@
 include_recipe 'mysql::server'
+include_recipe "mysql::ruby"
 include_recipe 'database'
 
 ## Setup MySQL Database and User
