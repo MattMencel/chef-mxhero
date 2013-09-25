@@ -27,3 +27,9 @@ if node['mxhero']['database']
 	include_recipe "mxhero::mysql"
 end
 	
+
+ark	"mxhero" do
+	path "/opt/mxhero-installer"
+	url node['mxhero']['url']
+	action :put
+end
