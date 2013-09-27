@@ -39,19 +39,17 @@ user "mxhero" do
 	supports :manage_home => true 
 end
 
-
-if node['mxhero']['database']
-	include_recipe "mxhero::mysql"
-else
-	pkgs = ['clamav', 'clamd', 'perl-LDAP', 'postfix', 'spamassassin']
-	pkgs.each do |p|
-		package p
-	end
-end
-
-
 ark	"mxhero" do
 	url node['mxhero']['url']
 	prefix_root "/opt/mxhero-installer"
 	action :install
 end
+
+if node['mxhero']['database']
+	include_recipe "mxhero::mysql"
+else
+	include_recipe "mxhero::web"
+	
+end
+
+
