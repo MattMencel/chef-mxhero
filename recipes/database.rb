@@ -7,22 +7,27 @@ end
 
 
 # SETUP NFS SHARES FOR TOMCAT HOSTS
-dirs = ['/data/attachments', '/data/text2images/files', '/apps', '/configuration/', '/configuration/properties']
+dirs = ['/data', '/apps', '/configuration']
+
 dirs.each do |d|
-	directory "#{node['mxhero']['nfs_root_dir']}#{d}" do
+	remote_directory "#{node['mxhero']['nfs_root_dir']}/engine#{d}" do
+		source "#{node['mxhero']['home']}/engine#{d}"
+		files_owner "mxhero"
+		files_group "mxhero"
+		files_mode 00644
 		owner "mxhero"
 		group "mxhero"
-		recursive true
 		mode 00755
-		action :create
 	end
 end
+
+
 
 include_recipe 'nfs::server'
 
 dirs.each do |d|
 	node['mxhero']['tomcat_nodes'].each do |tomcat_node|
-		nfs_export "#{node['mxhero']['nfs_root_dir']}#{d}" do
+		nfs_export "#{node['mxhero']['nfs_root_dir']}/engine#{d}" do
 			network tomcat_node
 			anonuser "mxhero"
 			anongroup "mxhero"
@@ -31,3 +36,5 @@ dirs.each do |d|
 	end
 end
 
+
+	

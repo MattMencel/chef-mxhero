@@ -20,7 +20,7 @@ default['mxhero']['db_port'] = "3306"
 ### DEFAULTS FOR INSTALL
 default['mysql']['tunable']['event_scheduler']  = "ON"
 
-default['mxhero']['install_dir'] = "/opt/mxhero-installer/"
+default['mxhero']['install_dir'] = "/opt/mxhero-installer"
 default['mxhero']['url'] = "http://www.mxhero.com/Download/Software/Installer/Community/mxHero-Community-#{node['mxhero']['version']}.RELEASE.tar.gz"
 default['mxhero']['version'] = '2.2.0'
 default['rpmforge']['rpm_url'] = "http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm"
@@ -35,4 +35,4 @@ default['mxhero']['db']['user'] = 'mxhero_user'
 default['mxhero']['db']['pass'] = 'change_me'
 
 # NFS DEFAULTS
-default['mxhero']['nfs_root_dir'] = '/data/mxhero'
+default['mxhero']['nfs_root_dir'] = '/shared/mxhero'
