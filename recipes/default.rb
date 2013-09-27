@@ -41,7 +41,8 @@ end
 
 ark	"mxhero" do
 	url node['mxhero']['url']
-	prefix_root "/opt/mxhero-installer"
+	prefix_root node['mxhero']['install_dir']
+	version node['mxhero']['version']
 	action :install
 end
 
