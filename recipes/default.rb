@@ -49,15 +49,8 @@ else
 	end
 end
 
-# directory "/opt/mxhero-installer" do
-#         owner "root"
-#         group "root"
-#         mode 00755
-#         action :create
-# end
 
-
-ark	"mxhero-#{node['mxhero']['version']}" do
+ark	"mxhero" do
 	url node['mxhero']['url']
 	prefix_root "/opt/mxhero-installer"
 	action :install
