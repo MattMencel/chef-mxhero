@@ -1,7 +1,4 @@
-pkgs = ['clamav', 'clamd', 'perl-LDAP', 'postfix', 'spamassassin']
-pkgs.each do |p|
-	package p
-end
+
 
 
 disabled_svcs = ['mysqld']

@@ -17,11 +17,8 @@ when "centos", "redhat", "fedora"
   include_recipe "yum::default"
 end
 
-# Create mxHero user and group
-
-# Require Ruby
-
-pkgs = ['ruby', 'rubygems']
+### INSTALL DEFAULT PACKAGES FOR MXHERO
+pkgs = ['clamav', 'clamd', 'perl-LDAP', 'postfix', 'spamassassin', 'ruby', 'rubygems']
 pkgs.each do |pkg|
 	package pkg do
 		action :install
@@ -30,13 +27,7 @@ end
 
 gem_package "facter"
 
-
-# include_recipe "rbenv::default"
-# include_recipe "rbenv::ruby_build"
-# rbenv_ruby "2.0.0-p247" do
-#   global true
-# end
-
+# Create mxHero user and group
 group "mxhero" do
 	action :create
 end
@@ -50,6 +41,28 @@ user "mxhero" do
 	supports :manage_home => true 
 end
 
+## Setup MySQL Database and User
+include_recipe 'mysql::server'
+include_recipe "mysql::ruby"
+include_recipe 'database'
+
+mysql_connection_info = {:host => "localhost",
+                         :username => 'root',
+                         :password => node['mysql']['server_root_password']}
+                         
+mysql_database 'mxhero' do
+  connection mysql_connection_info
+  action :create
+end
+
+mysql_database_user node['mxhero']['db_user'] do
+  connection mysql_connection_info
+  database_name 'mxhero'
+  password node['mxhero']['db_pass']
+  privileges [:all]
+  action :grant
+end
+
 ark	"mxhero" do
 	url node['mxhero']['url']
 	prefix_root node['mxhero']['install_dir']
@@ -57,11 +70,15 @@ ark	"mxhero" do
 	action :install
 end
 
-if node['mxhero']['database']
-	include_recipe "mxhero::mysql"
-else
-	include_recipe "mxhero::web"
-end
+# RUN THE CLEANUP STEPS IF MANUAL INSTALL IS DONE
+if File.readlines('/opt/mxhero/VERSION').grep(/node['mxhero']['version']/).any?
 
+	if node['mxhero']['database']
+		include_recipe "mxhero::mysql"
+	else
+		include_recipe "mxhero::web"
+	end
+
+end
 
 
