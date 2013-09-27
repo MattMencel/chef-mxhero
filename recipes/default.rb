@@ -87,8 +87,14 @@ if File.exists?('/opt/mxhero/VERSION') and File.readlines('/opt/mxhero/VERSION')
 		owner "mxhero"
 		group "mxhero"
 		mode 00644
+		notifies :run, 'execute[mxhero_restart]'
 	end
 	
+end
+
+execute "mxhero_restart" do
+	command "service mxhero stop;mxhero service start"
+	action :nothing
 end
 
 
