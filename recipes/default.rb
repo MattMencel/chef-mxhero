@@ -48,16 +48,17 @@ else
 		package p
 	end
 end
-	
-directory "/opt/mxhero-installer" do
-	owner "root"
-	group "root"
-	mode 00755
-	action :create
-end
 
-ark	"mxhero-installer" do
+# directory "/opt/mxhero-installer" do
+#         owner "root"
+#         group "root"
+#         mode 00755
+#         action :create
+# end
+
+
+ark	"mxhero-#{node['mxhero']['version']}" do
 	url node['mxhero']['url']
-	prefix_root "/opt"
+	prefix_root "/opt/mxhero-installer"
 	action :install
 end
