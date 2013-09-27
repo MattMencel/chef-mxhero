@@ -1,6 +1,4 @@
 
-
-
 disabled_svcs = ['mysqld']
 disabled_svcs.each do |svc|
 	service svc do

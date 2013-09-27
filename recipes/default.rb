@@ -55,12 +55,15 @@ mysql_database 'mxhero' do
   action :create
 end
 
-mysql_database_user node['mxhero']['db_user'] do
-  connection mysql_connection_info
-  database_name 'mxhero'
-  password node['mxhero']['db_pass']
-  privileges [:all]
-  action :grant
+default['mxhero']['db']['allow_from_hosts'].each do |tomcat_host|
+	mysql_database_user node['mxhero']['db']'user'] do
+	  connection mysql_connection_info
+	  database_name 'mxhero'
+	  password node['mxhero']['db']['pass']
+	  host tomcat_host
+	  privileges [:all]
+	  action :grant
+	end
 end
 
 ark	"mxhero" do
@@ -70,15 +73,22 @@ ark	"mxhero" do
 	action :install
 end
 
-# RUN THE CLEANUP STEPS IF MANUAL INSTALL IS DONE
+# RUN THE CLEANUP STEPS AND UPDATE setenv.sh IF MANUAL INSTALL IS DONE
 if File.exists?('/opt/mxhero/VERSION') and File.readlines('/opt/mxhero/VERSION').grep(/#{node['mxhero']['version']}/).any?
 
 	if node['mxhero']['database']
-		include_recipe "mxhero::mysql"
+		include_recipe "mxhero::database"
 	else
-		include_recipe "mxhero::web"
+		include_recipe "mxhero::tomcat"
 	end
 
+	template "/opt/mxhero/setenv.sh" do
+		source "setenv.sh.erb"
+		owner "mxhero"
+		group "mxhero"
+		mode 00644
+	end
+	
 end
 
 

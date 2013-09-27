@@ -1,0 +1,44 @@
+MXHERO_HOME=<%= node['mxhero']['home'] %>
+export MXHERO_HOME
+
+JAVA_HOME=${MXHERO_HOME}/jdk/java
+export JAVA_HOME
+
+PATH=${MXHERO_HOME}/bin:${JAVA_HOME}/bin:${PATH}
+export PATH
+
+MXHERO_HEAPSIZE=<%= node['mxhero']['java_heapsize'] %>
+MXHERO_NEWSIZE=<%= node['mxhero']['java_newsize'] %>
+MXHERO_PERMSIZE=<%= node['mxhero']['java_permsize'] %>
+MXHERO_GC=<%= node['mxhero']['java_gc'] %>
+
+#MXHERO_JMX="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=192.168.3.41" 
+MXHERO_JMX=""
+
+MXHERO_WEB_SERVER_HOST=<%= node['mxhero']['webserver_host'] %>
+MXHERO_WEB_SERVER_PORT=<%= node['mxhero']['webserver_port'] %>
+MXHERO_SMTP_HOST=<%= node['mxhero']['smtp_host'] %>
+MXHERO_SMTP_PORT=<%= node['mxhero']['smtp_port'] %>
+MXHERO_MAX_SIZE_MESSAGE=<%= node['mxhero']['max_message_size'] %>
+MXHERO_ENGINE_PATH=<%= node['mxhero']['engine_path'] %>
+MXHERO_STORE_PATH=<%= node['mxhero']['store_path'] %>
+MXHERO_DB_HOST=<%= node['mxhero']['db_host'] %>
+MXHERO_DB_PORT=<%= node['mxhero']['db_port'] %>
+
+export MXHERO_HEAPSIZE
+export MXHERO_NEWSIZE
+export MXHERO_PERMSIZE
+export MXHERO_GC
+export MXHERO_JMX
+export MXHERO_WEB_SERVER_HOST
+export MXHERO_WEB_SERVER_PORT
+export MXHERO_SMTP_HOST
+export MXHERO_SMTP_PORT
+export MXHERO_MAX_SIZE_MESSAGE
+export MXHERO_STORE_PATH
+export MXHERO_DB_HOST
+export MXHERO_DB_PORT
+export MXHERO_ENGINE_PATH
+
+MXHERO_JVM_OPTS="$MXHERO_JMX -Xmx$MXHERO_HEAPSIZE -XX:SurvivorRatio=8 -XX:MaxNewSize=$MXHERO_NEWSIZE -XX:PermSize=$MXHERO_PERMSIZE -XX:MaxPermSize=$MXHERO_PERMSIZE $MXHERO_GC -Duser.timezone=UTC -Dweb.server.host=$MXHERO_WEB_SERVER_HOST -Dweb.server.port=$MXHERO_WEB_SERVER_PORT -Dsmtp.host=$MXHERO_SMTP_HOST -Dsmtp.port=$MXHERO_SMTP_PORT -Dmessage.max.size=$MXHERO_MAX_SIZE_MESSAGE -Dmxhero.data.storage.path=$MXHERO_STORE_PATH -Dmxhero.db.host=$MXHERO_DB_HOST -Dmxhero.db.port=$MXHERO_DB_PORT -Dmxhero.engine.root=$MXHERO_ENGINE_PATH"
+export MXHERO_JVM_OPTS
