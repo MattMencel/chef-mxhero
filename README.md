@@ -7,6 +7,8 @@ This cookbook does NOT currently fully deploy mxhero.  You MUST manually run the
 
 This cookbook will deploy the application files to /opt/mxhero-installer and check that all pre-reqs are installed.  It also will ensure that the right services are running or stopped depending on role (webserver or db) and the configs are correct once the install is done.
 
+The database node is assumed to be the location for the shared NFS exports.
+
 Requirements
 ------------
 

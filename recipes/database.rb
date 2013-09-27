@@ -22,9 +22,10 @@ include_recipe 'nfs::server'
 
 dirs.each do |d|
 	node['mxhero']['tomcat_nodes'].each do |tomcat_node|
-	nfs_export "#{node['mxhero']['nfs_root_dir']}/#{d}" do
-		network tomcat_node
-		writeable true
+		nfs_export "#{node['mxhero']['nfs_root_dir']}/#{d}" do
+			network tomcat_node
+			writeable true
+		end
 	end
 end
 
