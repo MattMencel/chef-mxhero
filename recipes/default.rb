@@ -55,7 +55,7 @@ mysql_database 'mxhero' do
   action :create
 end
 
-node['mxhero']['tomcat_node'].each do |tomcat_node|
+node['mxhero']['tomcat_nodes'].each do |tomcat_node|
 	mysql_database_user node['mxhero']['db']['user'] do
 	  connection mysql_connection_info
 	  database_name 'mxhero'
