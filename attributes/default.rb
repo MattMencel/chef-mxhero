@@ -23,15 +23,16 @@ default['mysql']['tunable']['event_scheduler']  = "ON"
 default['mxhero']['install_dir'] = "/opt/mxhero-installer/"
 default['mxhero']['url'] = "http://www.mxhero.com/Download/Software/Installer/Community/mxHero-Community-#{node['mxhero']['version']}.RELEASE.tar.gz"
 default['mxhero']['version'] = '2.2.0'
+default['rpmforge']['rpm_url'] = "http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm"
 
 # Determine if the node needs to setup the MXHero DB
 default['mxhero']['database'] = false
 
 # Array of hosts running Tomcat to allow MySQL connections from
-default['mxhero']['db']['allow_from_hosts'] = ['localhost']
+default['mxhero']['tomcat_nodes'] = ['localhost']
 
 default['mxhero']['db']['user'] = 'mxhero_user'
 default['mxhero']['db']['pass'] = 'change_me'
 
-default['rpmforge']['rpm_url'] = "http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm"
-
+# NFS DEFAULTS
+default['mxhero']['nfs_root_dir'] = '/data/mxhero'

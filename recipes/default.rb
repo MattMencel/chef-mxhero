@@ -55,12 +55,12 @@ mysql_database 'mxhero' do
   action :create
 end
 
-node['mxhero']['db']['allow_from_hosts'].each do |tomcat_host|
+node['mxhero']['tomcat_node'].each do |tomcat_node|
 	mysql_database_user node['mxhero']['db']['user'] do
 	  connection mysql_connection_info
 	  database_name 'mxhero'
 	  password node['mxhero']['db']['pass']
-	  host tomcat_host
+	  host tomcat_node
 	  privileges [:all]
 	  action :grant
 	end

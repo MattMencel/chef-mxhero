@@ -5,3 +5,6 @@ disabled_svcs.each do |svc|
 		action [ :disable, :stop ]
 	end
 end	
+
+
+include_recipe 'nfs'
