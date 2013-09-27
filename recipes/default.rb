@@ -56,7 +56,7 @@ mysql_database 'mxhero' do
 end
 
 default['mxhero']['db']['allow_from_hosts'].each do |tomcat_host|
-	mysql_database_user node['mxhero']['db']'user'] do
+	mysql_database_user node['mxhero']['db']['user'] do
 	  connection mysql_connection_info
 	  database_name 'mxhero'
 	  password node['mxhero']['db']['pass']
