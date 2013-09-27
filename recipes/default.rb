@@ -56,8 +56,8 @@ directory "/opt/mxhero-installer" do
 	action :create
 end
 
-ark	node['mxhero']['install_dir'] do
-	path "/opt/mxhero-installer"
+ark	"mxhero-installer" do
 	url node['mxhero']['url']
-	action :put
+	prefix_root "/opt"
+	action :install
 end
