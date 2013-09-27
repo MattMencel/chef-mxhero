@@ -20,11 +20,22 @@ end
 # Create mxHero user and group
 
 # Require Ruby
-include_recipe "rbenv::default"
-include_recipe "rbenv::ruby_build"
-rbenv_ruby "2.0.0-p247" do
-  global true
+
+pkgs = ['ruby', 'rubygems']
+pkgs.each do |pkg|
+	package pkg do
+		action :install
+	end
 end
+
+gem_package "facter"
+
+
+# include_recipe "rbenv::default"
+# include_recipe "rbenv::ruby_build"
+# rbenv_ruby "2.0.0-p247" do
+#   global true
+# end
 
 group "mxhero" do
 	action :create
@@ -50,7 +61,7 @@ if node['mxhero']['database']
 	include_recipe "mxhero::mysql"
 else
 	include_recipe "mxhero::web"
-	
 end
+
 
 
