@@ -71,7 +71,7 @@ ark	"mxhero" do
 end
 
 # RUN THE CLEANUP STEPS IF MANUAL INSTALL IS DONE
-if File.exists?('opt/mxhero/VERSION') and File.readlines('/opt/mxhero/VERSION').grep(/node['mxhero']['version']/).any?
+if File.exists?('/opt/mxhero/VERSION') and File.readlines('/opt/mxhero/VERSION').grep(/node['mxhero']['version']/).any?
 
 	if node['mxhero']['database']
 		include_recipe "mxhero::mysql"
