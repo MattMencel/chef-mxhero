@@ -9,3 +9,6 @@ default['mxhero']['database'] = false
 
 default['mxhero']['db_user'] = 'mxhero_user'
 default['mxhero']['db_pass'] = 'change_me'
+
+default['rpmforge']['rpm_url'] = "http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm"
+

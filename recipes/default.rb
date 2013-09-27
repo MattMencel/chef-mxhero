@@ -7,6 +7,16 @@
 # All rights reserved - Do Not Redistribute
 #
 
+# add the RPMForge repository
+case node["platform"]
+when "centos", "redhat", "fedora"
+  execute "add_rpmforge_repo" do
+    command "rpm -Uhv #{node['rpmforge']['rpm_url']}"
+    not_if { File.exists?("/etc/yum.repos.d/rpmforge.repo") }
+  end
+  include_recipe "yum::default"
+end
+
 # Create mxHero user and group
 
 # Require Ruby
@@ -32,6 +42,11 @@ end
 
 if node['mxhero']['database']
 	include_recipe "mxhero::mysql"
+else
+	pkgs = ['clamav', 'clamd', 'perl-LDAP', 'postfix', 'spamassassin']
+	pkgs.each do |p|
+		package p
+	end
 end
 	
 directory "/opt/mxhero-installer" do
