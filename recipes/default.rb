@@ -93,7 +93,7 @@ if File.exists?('/opt/mxhero/VERSION') and File.readlines('/opt/mxhero/VERSION')
 end
 
 execute "mxhero_restart" do
-	command "service mxhero stop;mxhero service start"
+	command "service mxhero stop;service mxhero start"
 	action :nothing
 end
 
