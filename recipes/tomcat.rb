@@ -22,7 +22,7 @@ node['mxhero']['nfs_shared_dirs'].each do |d|
 		fstype "nfs"
 		options "rw"
 		action [:mount, :enable]
-		notifies :restart, resources(:service => "mxhero")
+		notifies :restart, "service[mxhero]", :delayed
 	end
 end
 
