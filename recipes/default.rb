@@ -58,16 +58,8 @@ mysql_database 'mxhero' do
   action :create
 end
 
-nodes = []
-node['mxhero']['tomcat_nodes'].each do |entry|
-	if IPAddress.valid? entry
-		host_name = Socket.gethostbyname(entry)
-		nodes << entry
-		nodes << host_name
-	else
-	 	nodes <<  entry
-	end
-end
+# GRANTS FROM IPs and HOSTNAMES
+nodes = node['mxhero']['tomcat_node_ips'] + node['mxhero']['tomcat_node_hostnames'] 
 
 nodes.each do |tomcat_node|
 	mysql_database_user node['mxhero']['db_user'] do

@@ -4,7 +4,7 @@ maintainer_email 'mr-mencel@wiu.edu'
 license          'All rights reserved'
 description      'Installs/Configures mxhero'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.20'
+version          '0.2.21'
 
 supports 		'centos', '>= 6.3'
 
