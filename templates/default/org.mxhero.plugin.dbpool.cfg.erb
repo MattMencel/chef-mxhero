@@ -1,7 +1,7 @@
 driverClass=com.mysql.jdbc.Driver
 jdbcUrl=jdbc:mysql://${mxhero.db.host}:${mxhero.db.port}/mxhero
 username=<%= node['mxhero']['db_user'] %>
-password=mxhero<%= node['mxhero']['db_pass'] %>
+password=<%= node['mxhero']['db_pass'] %>
 idleConnectionTestPeriodInMinutes=1
 idleMaxAgeInMinutes=4
 maxConnectionsPerPartition=20
