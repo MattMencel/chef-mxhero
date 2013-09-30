@@ -11,7 +11,7 @@ dirs = ['/data', '/apps', '/configuration']
 
 dirs.each do |d|
 	execute "rsync" do
-		command "rsync -a #{node['mxhero']['home']}/engine#{d} #{node['mxhero']['nfs_root_dir']}/engine#{d}"
+		command "rsync -a #{node['mxhero']['home']}/engine#{d} #{node['mxhero']['nfs_root_dir']}/engine/"
 		creates "#{node['mxhero']['nfs_root_dir']}/engine#{d}"
 		action :run
 	end
