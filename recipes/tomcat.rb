@@ -37,6 +37,13 @@ node['mxhero']['nfs_shared_dirs'].each do |d|
 	end
 end
 
+template "#{node['mxhero']['home']}/engine/configuration/config.ini" do
+	source "config.ini.erb"
+	owner "mxhero"
+	group "mxhero"
+	mode 00644
+	notifies :restart, "service[mxhero]", :delayed
+end
 
 service "mxhero" do
 	supports :restart => true

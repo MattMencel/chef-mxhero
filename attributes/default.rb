@@ -35,5 +35,5 @@ default['mxhero']['tomcat_nodes'] = ['localhost']
 ###  DEFAULTS FOR NFS
 default['mxhero']['nfs_server'] = node['mxhero']['db_host']
 default['mxhero']['nfs_root_dir'] = '/shared/mxhero'
-default['mxhero']['nfs_shared_dirs'] = ['/data/attachments', '/data/text2image', '/apps', '/configuration']
+default['mxhero']['nfs_shared_dirs'] = ['/data/attachments', '/data/text2image', '/apps', '/configuration/properties']
 
