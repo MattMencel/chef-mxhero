@@ -31,5 +31,12 @@ node['mxhero']['nfs_shared_dirs'].each do |d|
 	end
 end
 
+template "#{node['mxhero']['nfs_root_dir']}/engine/configuration/properties/org.mxhero.engine.core.cache.cfg" do
+	source "org.mxhero.engine.core.cache.cfg.erb"
+	owner "mxhero"
+	group "mxhero"
+	mode 00644
+end
+
 
 	
