@@ -6,9 +6,6 @@
 # 
 # All rights reserved - Do Not Redistribute
 #
-chef_gem 'ipaddress'
-
-require 'ipaddress'
 
 # add the RPMForge repository
 case node["platform"]
