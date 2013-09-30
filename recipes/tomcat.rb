@@ -29,7 +29,7 @@ node['mxhero']['nfs_shared_dirs'].each do |d|
 	# Mount NFS shares to the new empty directories
 	mount "create_nfs_mount" do
 		mount_point "#{node['mxhero']['home']}/engine#{d}"
-		device "#{node['mxhero']['nfs_server']}:#{node['mxhero']['nfs_root_dir']}#{d}"
+		device "#{node['mxhero']['nfs_server']}:#{node['mxhero']['nfs_root_dir']}/engine#{d}"
 		fstype "nfs"
 		options "rw"
 		action [:mount, :enable]
