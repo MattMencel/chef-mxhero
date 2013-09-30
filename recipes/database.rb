@@ -38,5 +38,13 @@ template "#{node['mxhero']['nfs_root_dir']}/engine/configuration/properties/org.
 	mode 00644
 end
 
+template "#{node['mxhero']['nfs_root_dir']}/engine/configuration/properties/org.mxhero.plugin.dbpool.cfg" do
+	source "org.mxhero.plugin.dbpool.cfg.erb"
+	owner "mxhero"
+	group "mxhero"
+	mode 00644
+end
+
+
 
 	

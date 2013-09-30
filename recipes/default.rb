@@ -56,10 +56,10 @@ mysql_database 'mxhero' do
 end
 
 node['mxhero']['tomcat_nodes'].each do |tomcat_node|
-	mysql_database_user node['mxhero']['db']['user'] do
+	mysql_database_user node['mxhero']['db_user'] do
 	  connection mysql_connection_info
 	  database_name 'mxhero'
-	  password node['mxhero']['db']['pass']
+	  password node['mxhero']['db_pass']
 	  host tomcat_node
 	  privileges [:all]
 	  action :grant
