@@ -23,7 +23,7 @@ node['mxhero']['nfs_shared_dirs'].each do |d|
 		owner "mxhero"
 		group "mxhero"
 		mode 00755
-		action :create_if_missing
+		action :create
 	end
 	
 	# Mount NFS shares to the new empty directories
