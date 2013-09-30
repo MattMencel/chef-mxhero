@@ -30,8 +30,7 @@ default['mxhero']['database'] = false
 default['mysql']['tunable']['event_scheduler']  = "ON"
 
 # Array of hosts running Tomcat to allow MySQL connections from
-default['mxhero']['tomcat_node_ips'] = [node['ipaddress']]
-default['mxhero']['tomcat_node_hostnames'] = [node['fqdn']]
+default['mxhero']['tomcat_nodes'] = ['localhost']
 
 ###  DEFAULTS FOR NFS
 default['mxhero']['nfs_server'] = node['mxhero']['db_host']

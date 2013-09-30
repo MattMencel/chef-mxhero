@@ -59,9 +59,7 @@ mysql_database 'mxhero' do
 end
 
 # GRANTS FROM IPs and HOSTNAMES
-nodes = node['mxhero']['tomcat_node_ips'] + node['mxhero']['tomcat_node_hostnames'] 
-
-nodes.each do |tomcat_node|
+node['mxhero']['tomcat_nodes'].each do |tomcat_node|
 	mysql_database_user node['mxhero']['db_user'] do
 	  connection mysql_connection_info
 	  database_name 'mxhero'

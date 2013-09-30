@@ -21,7 +21,7 @@ end
 include_recipe 'nfs::server'
 
 node['mxhero']['nfs_shared_dirs'].each do |d|
-	node['mxhero']['tomcat_node_ips'].each do |tomcat_node|
+	node['mxhero']['tomcat_nodes'].each do |tomcat_node|
 		nfs_export "#{node['mxhero']['nfs_root_dir']}/engine#{d}" do
 			network tomcat_node
 			anonuser "mxhero"
