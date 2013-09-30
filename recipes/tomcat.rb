@@ -28,5 +28,5 @@ end
 
 
 service "mxhero" do
-	support :restart => true
+	supports :restart => true
 end
