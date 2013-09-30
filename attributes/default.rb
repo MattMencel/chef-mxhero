@@ -15,8 +15,8 @@ default['mxhero']['db_host'] = "localhost"
 default['mxhero']['db_port'] = "3306"
 
 ### DEFAULTS FOR DATABASE
-default['mxhero']['db_user'] = 'mxhero_user'
-default['mxhero']['db_pass'] = 'change_me'
+default['mxhero']['db_user'] = 'mxhero'
+default['mxhero']['db_pass'] = 'mxhero'
 
 ### DEFAULTS FOR INSTALL
 
