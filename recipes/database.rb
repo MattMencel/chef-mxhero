@@ -10,7 +10,8 @@ end
 
 node['mxhero']['nfs_shared_dirs'].each do |d|
 	path_elements = d.split('/')
-	root_path = path_elements[1] if path_elements.size > 2 || ''
+	root_path = ''
+	root_path = path_elements[1] if path_elements.size > 2
 	execute "rsync" do
 		command "rsync -a #{node['mxhero']['home']}/engine#{d} #{node['mxhero']['nfs_root_dir']}/engine/#{root_path}"
 		creates "#{node['mxhero']['nfs_root_dir']}/engine#{d}"
