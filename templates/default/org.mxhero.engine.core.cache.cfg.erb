@@ -1,0 +1,11 @@
+cache.loggin.type=Slf4j
+cache.multicast.enable=false
+cache.cluster.members.port.auto.increment=true
+cache.cluster.members.port=5701
+cache.multicast.group.ip=224.2.2.3
+cache.multicast.group.port=54327
+cache.tcpip.enable=true
+cache.tcpip.members.list.separated.by.comma=<%= node['mxhero']['tomcat_nodes'].join(',') %>
+cache.aws.enable=false
+cache.aws.access.key=TO_BE_SET
+cache.aws.secret.key=TO_BE_SET
