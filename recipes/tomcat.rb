@@ -20,7 +20,7 @@ node['mxhero']['nfs_shared_dirs'].each do |d|
 		mount_point "#{node['mxhero']['home']}/engine#{d}"
 		device "#{node['mxhero']['nfs_server']}:#{node['mxhero']['nfs_root_dir']}/#{d}"
 		fstype "nfs"
-		mount "rw"
+		options "rw"
 		action [:mount, :enable]
 		notifies :restart, resources(:service => "mxhero")
 	end
