@@ -45,6 +45,13 @@ template "#{node['mxhero']['nfs_root_dir']}/engine/configuration/properties/org.
 	mode 00644
 end
 
+template "#{node['mxhero']['nfs_root_dir']}/engine/configuration/config.ini" do
+	source "config.ini.erb"
+	owner "mxhero"
+	group "mxhero"
+	mode 00644
+end
+
 
 
 	
