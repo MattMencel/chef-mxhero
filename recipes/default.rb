@@ -6,6 +6,9 @@
 # 
 # All rights reserved - Do Not Redistribute
 #
+chef_gem 'ipaddress'
+
+require 'ipaddress'
 
 # add the RPMForge repository
 case node["platform"]
@@ -55,7 +58,18 @@ mysql_database 'mxhero' do
   action :create
 end
 
-node['mxhero']['tomcat_nodes'].each do |tomcat_node|
+nodes = []
+node['mxhero']['tomcat_nodes'].each do |entry|
+	if IPAddress.valid? entry
+		host_name = Socket.gethostbyname(entry)
+		nodes << entry
+		nodes << host_name
+	else
+	 	nodes <<  entry
+	end
+end
+
+nodes.each do |tomcat_node|
 	mysql_database_user node['mxhero']['db_user'] do
 	  connection mysql_connection_info
 	  database_name 'mxhero'
