@@ -10,15 +10,26 @@ end
 include_recipe 'nfs'
 
 node['mxhero']['nfs_shared_dirs'].each do |d|
+	# Move original files to a local copy
 	execute "move_directory" do
 		command "mv #{node['mxhero']['home']}/engine#{d} #{node['mxhero']['home']}/engine#{d}.local"
 		creates "#{node['mxhero']['home']}/engine#{d}.local"
 		action :run
 	end
 	
+	# Create Empty Direcoty for Mounting NFS Data
+	directory "name" do
+		path "#{node['mxhero']['home']}/engine#{d}"
+		owner "mxhero"
+		group "mxhero"
+		mode 00755
+		action :create_if_missing
+	end
+	
+	# Mount NFS shares to the new empty directories
 	mount "create_nfs_mount" do
 		mount_point "#{node['mxhero']['home']}/engine#{d}"
-		device "#{node['mxhero']['nfs_server']}:#{node['mxhero']['nfs_root_dir']}/#{d}"
+		device "#{node['mxhero']['nfs_server']}:#{node['mxhero']['nfs_root_dir']}#{d}"
 		fstype "nfs"
 		options "rw"
 		action [:mount, :enable]
