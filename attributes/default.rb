@@ -35,4 +35,7 @@ default['mxhero']['db']['user'] = 'mxhero_user'
 default['mxhero']['db']['pass'] = 'change_me'
 
 # NFS DEFAULTS
+default['mxhero']['nfs_server'] = node['mxhero']['db_host']
 default['mxhero']['nfs_root_dir'] = '/shared/mxhero'
+default['mxhero']['nfs_shared_dirs'] = ['/data', '/apps', '/configuration']
+
